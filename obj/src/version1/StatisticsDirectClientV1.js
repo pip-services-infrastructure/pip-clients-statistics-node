@@ -1,0 +1,44 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const pip_services_commons_node_1 = require("pip-services-commons-node");
+const pip_services_commons_node_2 = require("pip-services-commons-node");
+const pip_services_net_node_1 = require("pip-services-net-node");
+class StatisticsDirectClientV1 extends pip_services_net_node_1.DirectClient {
+    constructor(config) {
+        super();
+        this._dependencyResolver.put('controller', new pip_services_commons_node_2.Descriptor("pip-services-statistics", "controller", "*", "*", "*"));
+        if (config != null)
+            this.configure(pip_services_commons_node_1.ConfigParams.fromValue(config));
+    }
+    getCounters(correlationId, filter, paging, callback) {
+        let timing = this.instrument(correlationId, 'statistics.get_counters');
+        this._controller.getCounters(correlationId, filter, paging, (err, page) => {
+            timing.endTiming();
+            callback(err, page);
+        });
+    }
+    incrementCounter(correlationId, group, name, value, callback) {
+        let timing = this.instrument(correlationId, 'statistics.increment_counter');
+        this._controller.incrementCounter(correlationId, group, name, new Date(), value, (err) => {
+            timing.endTiming();
+            if (callback)
+                callback(err);
+        });
+    }
+    readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
+        let timing = this.instrument(correlationId, 'statistics.read_one_counter');
+        this._controller.readOneCounter(correlationId, group, name, type, fromTime, toTime, (err, set) => {
+            timing.endTiming();
+            callback(err, set);
+        });
+    }
+    readCounters(correlationId, counters, type, fromTime, toTime, callback) {
+        let timing = this.instrument(correlationId, 'statistics.read_counters');
+        this._controller.readCounters(correlationId, counters, type, fromTime, toTime, (err, sets) => {
+            timing.endTiming();
+            callback(err, sets);
+        });
+    }
+}
+exports.StatisticsDirectClientV1 = StatisticsDirectClientV1;
+//# sourceMappingURL=StatisticsDirectClientV1.js.map
