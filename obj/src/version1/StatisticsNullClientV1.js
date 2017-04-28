@@ -5,6 +5,9 @@ const pip_services_commons_node_1 = require("pip-services-commons-node");
 const StatCounterSetV1_1 = require("./StatCounterSetV1");
 class StatisticsNullClientV1 {
     constructor(config) { }
+    getGroups(correlationId, paging, callback) {
+        callback(null, new pip_services_commons_node_1.DataPage([], 0));
+    }
     getCounters(correlationId, filter, paging, callback) {
         callback(null, new pip_services_commons_node_1.DataPage([], 0));
     }

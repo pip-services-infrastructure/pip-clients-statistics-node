@@ -10,6 +10,13 @@ class StatisticsDirectClientV1 extends pip_services_net_node_1.DirectClient {
         if (config != null)
             this.configure(pip_services_commons_node_1.ConfigParams.fromValue(config));
     }
+    getGroups(correlationId, paging, callback) {
+        let timing = this.instrument(correlationId, 'statistics.get_groups');
+        this._controller.getGroups(correlationId, paging, (err, page) => {
+            timing.endTiming();
+            callback(err, page);
+        });
+    }
     getCounters(correlationId, filter, paging, callback) {
         let timing = this.instrument(correlationId, 'statistics.get_counters');
         this._controller.getCounters(correlationId, filter, paging, (err, page) => {

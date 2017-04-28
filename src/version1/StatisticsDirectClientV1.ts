@@ -22,13 +22,23 @@ export class StatisticsDirectClientV1 extends DirectClient<any> implements IStat
             this.configure(ConfigParams.fromValue(config));
     }
 
+    public getGroups(correlationId: string, paging: PagingParams, 
+        callback: (err: any, page: DataPage<string>) => void): void {
+        let timing = this.instrument(correlationId, 'statistics.get_groups');
+        this._controller.getGroups(correlationId, paging, (err, page) => {
+            timing.endTiming();
+            callback(err, page);
+        });    
+    }
+
     public getCounters(correlationId: string, filter: FilterParams, paging: PagingParams, 
         callback: (err: any, page: DataPage<StatCounterV1>) => void): void {
         let timing = this.instrument(correlationId, 'statistics.get_counters');
         this._controller.getCounters(correlationId, filter, paging, (err, page) => {
             timing.endTiming();
             callback(err, page);
-        });    }
+        });    
+    }
     
     public incrementCounter(correlationId: string, group: string, name: string,
         value: number, callback?: (err: any) => void): void {

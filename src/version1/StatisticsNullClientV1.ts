@@ -12,6 +12,11 @@ import { IStatisticsClientV1 } from './IStatisticsClientV1';
 export class StatisticsNullClientV1 implements IStatisticsClientV1 {
     constructor(config?: any) {}
         
+    public getGroups(correlationId: string, paging: PagingParams, 
+        callback: (err: any, page: DataPage<string>) => void): void {
+        callback(null, new DataPage<string>([], 0));
+    }
+
     public getCounters(correlationId: string, filter: FilterParams, paging: PagingParams, 
         callback: (err: any, page: DataPage<StatCounterV1>) => void): void {
         callback(null, new DataPage<StatCounterV1>([], 0));

@@ -10,10 +10,11 @@ and provides high-level API to access the microservice for simple and productive
 * [StatCounterValueV1 class](#class2)
 * [StatCounterSetV1 class](#class2)
 * [IStatisticsClientV1 interface](#interface)
-    - [getCounters()](#operation1)
-    - [incrementCounter()](#operation2)
-    - [readOneCounter()](#operation2)
-    - [readCounters()](#operation2)
+    - [getGroups()](#operation1)
+    - [getCounters()](#operation2)
+    - [incrementCounter()](#operation3)
+    - [readOneCounter()](#operation4)
+    - [readCounters()](#operation5)
 * [StatisticsHttpClientV1 class](#client_http)
 * [StatisticsSenecaClientV1 class](#client_seneca)
 * [StatisticsDirectClientV1 class](#client_direct)
@@ -153,6 +154,7 @@ all methods defined in this interface are implemented by all client classes.
 
 ```javascript
 interface IStatisticsClientV1 {
+    getGroups(correlationId, paging, callback);
     getCounters(correlationId, filter, paging, callback);
     incrementCounter(correlationId, group, name, value, callback);
     readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback);
@@ -160,7 +162,21 @@ interface IStatisticsClientV1 {
 }
 ```
 
-### <a name="operation1"></a> getCounters(correlationId, filter, paging, callback)
+### <a name="operation1"></a> getGroups(correlationId, paging, callback)
+
+Retrieves groups for all counters
+
+**Arguments:** 
+- correlationId: string - id that uniquely identifies transaction
+- paging: object - paging parameters
+  - skip: int - (optional) start of page (default: 0)
+  - take: int - (optional) page length (default: 100)
+  - total: boolean - (optional) include total counter into paged result (default: false)
+- callback: (err, page) - callback function
+  - err: Error - occured error or null for success
+  - page: DataPage<string> - retrieved group names in paged format
+
+### <a name="operation2"></a> getCounters(correlationId, filter, paging, callback)
 
 Retrieves system events by specified criteria
 
@@ -181,7 +197,7 @@ Retrieves system events by specified criteria
   - err: Error - occured error or null for success
   - page: DataPage<StatCounterV1> - retrieved StatCounterV1 objects in paged format
 
-### <a name="operation2"></a> incrementCounter(correlationId, group, name, value, callback)
+### <a name="operation3"></a> incrementCounter(correlationId, group, name, value, callback)
 
 Increments specific counter by group and name
 
@@ -195,7 +211,7 @@ Increments specific counter by group and name
 **Returns:**
 - err: Error - occured error or null for success
 
-### <a name="operation3"></a> readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback)
+### <a name="operation4"></a> readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback)
 
 Reads counter by group and name within specific time interval
 
@@ -211,7 +227,7 @@ Reads counter by group and name within specific time interval
 - err: Error - occured error or null for success
 - result: StatCounterSetV1 - set of retrieved counter values
 
-### <a name="operation4"></a> readCounters(correlationId, counter, type, fromTime, toTime, callback)
+### <a name="operation5"></a> readCounters(correlationId, counter, type, fromTime, toTime, callback)
 
 Reads multiple counters within specific time interval
 
@@ -237,6 +253,7 @@ class StatisticsHttpClientV1 extends CommandableHttpClient implements IStatistic
     setReferences(references);
     open(correlationId, callback);
     close(correlationId, callback);
+    getGroups(correlationId, paging, callback);
     getCounters(correlationId, filter, paging, callback);
     incrementCounter(correlationId, group, name, value, callback);
     readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback);
@@ -260,6 +277,7 @@ class StatisticsSenecaClientV1 extends CommandableSenecaClient implements IStati
     setReferences(references);
     open(correlationId, callback);
     close(correlationId, callback);
+    getGroups(correlationId, paging, callback);
     getCounters(correlationId, filter, paging, callback);
     incrementCounter(correlationId, group, name, value, callback);
     readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback);
@@ -284,6 +302,7 @@ class StatisticsDirectClientV1 extends DirectClient implements IStatisticsClient
     setReferences(references);
     open(correlationId, callback);
     close(correlationId, callback);
+    getGroups(correlationId, paging, callback);
     getCounters(correlationId, filter, paging, callback);
     incrementCounter(correlationId, group, name, value, callback);
     readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback);
@@ -299,6 +318,7 @@ It can be useful in testing scenarios to cut dependencies on external microservi
 ```javascript
 class StatisticsNullClientV1 implements IStatisticsClientV1 {
     constructor();
+    getGroups(correlationId, paging, callback);
     getCounters(correlationId, filter, paging, callback);
     incrementCounter(correlationId, group, name, value, callback);
     readOneCounter(correlationId, group, name, type, fromTime, toTime, value, callback);

@@ -7,6 +7,7 @@ import { StatCounterSetV1 } from './StatCounterSetV1';
 import { IStatisticsClientV1 } from './IStatisticsClientV1';
 export declare class StatisticsNullClientV1 implements IStatisticsClientV1 {
     constructor(config?: any);
+    getGroups(correlationId: string, paging: PagingParams, callback: (err: any, page: DataPage<string>) => void): void;
     getCounters(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<StatCounterV1>) => void): void;
     incrementCounter(correlationId: string, group: string, name: string, value: number, callback?: (err: any) => void): void;
     readOneCounter(correlationId: string, group: string, name: string, type: StatCounterTypeV1, fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterSetV1) => void): void;

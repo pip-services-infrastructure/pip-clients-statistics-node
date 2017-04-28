@@ -8,6 +8,11 @@ class StatisticsHttpClientV1 extends pip_services_net_node_1.CommandableHttpClie
         if (config != null)
             this.configure(pip_services_commons_node_1.ConfigParams.fromValue(config));
     }
+    getGroups(correlationId, paging, callback) {
+        this.callCommand('get_groups', correlationId, {
+            paging: paging
+        }, callback);
+    }
     getCounters(correlationId, filter, paging, callback) {
         this.callCommand('get_counters', correlationId, {
             filter: filter,

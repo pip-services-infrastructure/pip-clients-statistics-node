@@ -18,6 +18,18 @@ export class StatisticsLambdaClientV1 extends CommandableLambdaClient implements
         if (config != null)
             this.configure(ConfigParams.fromValue(config));
     }
+
+    public getGroups(correlationId: string, paging: PagingParams, 
+        callback: (err: any, page: DataPage<string>) => void): void {
+        this.callCommand(
+            'get_groups',
+            correlationId,
+            {
+                paging: paging
+            }, 
+            callback
+        );
+    }
         
     public getCounters(correlationId: string, filter: FilterParams, paging: PagingParams, 
         callback: (err: any, page: DataPage<StatCounterV1>) => void): void {
