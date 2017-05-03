@@ -18,6 +18,9 @@ class StatisticsNullClientV1 {
     readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
         callback(null, new StatCounterSetV1_1.StatCounterSetV1(group, name, type, []));
     }
+    readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
+        callback(null, []);
+    }
     readCounters(correlationId, counters, type, fromTime, toTime, callback) {
         let result = _.map(c => new StatCounterSetV1_1.StatCounterSetV1(c.group, c.name, type, []));
         callback(null, result);

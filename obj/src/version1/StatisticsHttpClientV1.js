@@ -36,6 +36,14 @@ class StatisticsHttpClientV1 extends pip_services_net_node_1.CommandableHttpClie
             to_time: toTime
         }, callback);
     }
+    readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
+        this.callCommand('read_counters_by_group', correlationId, {
+            group: group,
+            type: type,
+            from_time: fromTime,
+            to_time: toTime
+        }, callback);
+    }
     readCounters(correlationId, counters, type, fromTime, toTime, callback) {
         this.callCommand('read_counters', correlationId, {
             counters: counters,

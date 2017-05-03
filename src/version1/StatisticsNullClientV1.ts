@@ -32,6 +32,11 @@ export class StatisticsNullClientV1 implements IStatisticsClientV1 {
         callback(null, new StatCounterSetV1(group, name, type, []));
     }
 
+    public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
+        callback(null, []);
+    }
+
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
         fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
         let result = _.map(c => new StatCounterSetV1(c.group, c.name, type, []));

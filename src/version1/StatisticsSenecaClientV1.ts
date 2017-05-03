@@ -75,6 +75,21 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
         );
     }
 
+    public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
+        this.callCommand(
+            'read_counters_by_group',
+            correlationId,
+            {
+                group: group,
+                type: type, 
+                from_time: fromTime,
+                to_time: toTime
+            }, 
+            callback
+        );
+    }
+
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
         fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
         this.callCommand(

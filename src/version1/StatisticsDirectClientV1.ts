@@ -58,6 +58,15 @@ export class StatisticsDirectClientV1 extends DirectClient<any> implements IStat
         });
     }
 
+    public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
+        let timing = this.instrument(correlationId, 'statistics.read_counters_by_group');
+        this._controller.readCountersByGroup(correlationId, group, type, fromTime, toTime, (err, set) => {
+            timing.endTiming();
+            callback(err, set);
+        });
+    }
+
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
         fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
         let timing = this.instrument(correlationId, 'statistics.read_counters');

@@ -39,6 +39,13 @@ class StatisticsDirectClientV1 extends pip_services_net_node_1.DirectClient {
             callback(err, set);
         });
     }
+    readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
+        let timing = this.instrument(correlationId, 'statistics.read_counters_by_group');
+        this._controller.readCountersByGroup(correlationId, group, type, fromTime, toTime, (err, set) => {
+            timing.endTiming();
+            callback(err, set);
+        });
+    }
     readCounters(correlationId, counters, type, fromTime, toTime, callback) {
         let timing = this.instrument(correlationId, 'statistics.read_counters');
         this._controller.readCounters(correlationId, counters, type, fromTime, toTime, (err, sets) => {
