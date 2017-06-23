@@ -7,8 +7,9 @@ import { CommandableSenecaClient } from 'pip-services-net-node';
 
 import { IStatisticsClientV1 } from './IStatisticsClientV1';
 import { StatCounterV1 } from './StatCounterV1';
+import { StatCounterIncrementV1 } from './StatCounterIncrementV1';
 import { StatCounterTypeV1 } from './StatCounterTypeV1';
-import { StatCounterSetV1 } from './StatCounterSetV1';
+import { StatCounterValueSetV1 } from './StatCounterValueSetV1';
 
 export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements IStatisticsClientV1 {
 
@@ -59,8 +60,20 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
         );
     }
 
+    public incrementCounters(correlationId: string, increments: StatCounterIncrementV1[],
+        callback?: (err: any) => void): void {
+        this.callCommand(
+            'increment_counters',
+            correlationId,
+            {
+                increments: increments
+            }, 
+            callback
+        );
+    }
+
     public readOneCounter(correlationId: string, group: string, name: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterSetV1) => void): void {
+        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterValueSetV1) => void): void {
         this.callCommand(
             'read_one_counter',
             correlationId,
@@ -76,7 +89,7 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
     }
 
     public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         this.callCommand(
             'read_counters_by_group',
             correlationId,
@@ -91,7 +104,7 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
     }
 
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         this.callCommand(
             'read_counters',
             correlationId,

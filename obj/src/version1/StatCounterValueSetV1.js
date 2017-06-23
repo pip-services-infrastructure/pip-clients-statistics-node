@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class StatCounterSetV1 {
+class StatCounterValueSetV1 {
     constructor(group, name, type, values) {
         this.group = group;
         this.name = name;
@@ -8,5 +8,5 @@ class StatCounterSetV1 {
         this.values = values || [];
     }
 }
-exports.StatCounterSetV1 = StatCounterSetV1;
-//# sourceMappingURL=StatCounterSetV1.js.map
+exports.StatCounterValueSetV1 = StatCounterValueSetV1;
+//# sourceMappingURL=StatCounterValueSetV1.js.map

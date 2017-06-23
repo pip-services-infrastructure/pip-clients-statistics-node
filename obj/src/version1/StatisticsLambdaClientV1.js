@@ -27,6 +27,11 @@ class StatisticsLambdaClientV1 extends pip_services_aws_node_1.CommandableLambda
             value: value
         }, callback);
     }
+    incrementCounters(correlationId, increments, callback) {
+        this.callCommand('increment_counters', correlationId, {
+            increments: increments
+        }, callback);
+    }
     readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
         this.callCommand('read_one_counter', correlationId, {
             group: group,

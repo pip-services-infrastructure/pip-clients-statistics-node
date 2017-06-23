@@ -6,7 +6,8 @@ import { DataPage } from 'pip-services-commons-node';
 
 import { StatCounterTypeV1 } from './StatCounterTypeV1';
 import { StatCounterV1 } from './StatCounterV1';
-import { StatCounterSetV1 } from './StatCounterSetV1';
+import { StatCounterIncrementV1 } from './StatCounterIncrementV1';
+import { StatCounterValueSetV1 } from './StatCounterValueSetV1';
 import { IStatisticsClientV1 } from './IStatisticsClientV1';
 
 export class StatisticsNullClientV1 implements IStatisticsClientV1 {
@@ -27,19 +28,24 @@ export class StatisticsNullClientV1 implements IStatisticsClientV1 {
         if (callback) callback(null);
     }
 
+    public incrementCounters(correlationId: string, increments: StatCounterIncrementV1[],
+        callback?: (err: any) => void): void {
+        if (callback) callback(null);
+    }
+
     public readOneCounter(correlationId: string, group: string, name: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterSetV1) => void): void {
-        callback(null, new StatCounterSetV1(group, name, type, []));
+        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterValueSetV1) => void): void {
+        callback(null, new StatCounterValueSetV1(group, name, type, []));
     }
 
     public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         callback(null, []);
     }
 
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterSetV1[]) => void): void {
-        let result = _.map(c => new StatCounterSetV1(c.group, c.name, type, []));
+        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        let result = _.map(c => new StatCounterValueSetV1(c.group, c.name, type, []));
         callback(null, result);
     }
 

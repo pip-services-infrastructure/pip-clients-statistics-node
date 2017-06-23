@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
-const StatCounterSetV1_1 = require("./StatCounterSetV1");
+const StatCounterValueSetV1_1 = require("./StatCounterValueSetV1");
 class StatisticsNullClientV1 {
     constructor(config) { }
     getGroups(correlationId, paging, callback) {
@@ -15,14 +15,18 @@ class StatisticsNullClientV1 {
         if (callback)
             callback(null);
     }
+    incrementCounters(correlationId, increments, callback) {
+        if (callback)
+            callback(null);
+    }
     readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
-        callback(null, new StatCounterSetV1_1.StatCounterSetV1(group, name, type, []));
+        callback(null, new StatCounterValueSetV1_1.StatCounterValueSetV1(group, name, type, []));
     }
     readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
         callback(null, []);
     }
     readCounters(correlationId, counters, type, fromTime, toTime, callback) {
-        let result = _.map(c => new StatCounterSetV1_1.StatCounterSetV1(c.group, c.name, type, []));
+        let result = _.map(c => new StatCounterValueSetV1_1.StatCounterValueSetV1(c.group, c.name, type, []));
         callback(null, result);
     }
 }

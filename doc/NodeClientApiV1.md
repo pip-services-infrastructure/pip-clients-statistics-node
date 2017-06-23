@@ -8,7 +8,7 @@ and provides high-level API to access the microservice for simple and productive
 * [StatCounterTypeV1 enum](#enum1)
 * [StatCounterV1 class](#class1)
 * [StatCounterValueV1 class](#class2)
-* [StatCounterSetV1 class](#class2)
+* [StatCounterValueSetV1 class](#class2)
 * [IStatisticsClientV1 interface](#interface)
     - [getGroups()](#operation1)
     - [getCounters()](#operation2)
@@ -137,7 +137,7 @@ Contains counter value for specific period
 - day: number - (optional) - day of the counter interval
 - hour: number - (optional) - hour of the counter interval
 
-### <a name="class2"></a> StatCounterSetV1 class
+### <a name="class2"></a> StatCounterValueSetV1 class
 
 Set of counter values for range of time intervals
 
@@ -225,7 +225,7 @@ Reads counter by group and name within specific time interval
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: StatCounterSetV1 - set of retrieved counter values
+- result: StatCounterValueSetV1 - set of retrieved counter values
 
 ### <a name="operation5"></a> readCounters(correlationId, counter, type, fromTime, toTime, callback)
 
@@ -240,7 +240,7 @@ Reads multiple counters within specific time interval
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: StatCounterSetV1[] - array of retrieved counter value sets
+- result: StatCounterValueSetV1[] - array of retrieved counter value sets
 
  
 ## <a name="client_http"></a> StatisticsHttpClientV1 class

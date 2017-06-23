@@ -6,7 +6,8 @@ import { FilterParams } from 'pip-services-commons-node';
 import { PagingParams } from 'pip-services-commons-node';
 
 import { StatCounterV1 } from '../../src/version1/StatCounterV1';
-import { StatCounterSetV1 } from '../../src/version1/StatCounterSetV1';
+import { StatCounterIncrementV1 } from '../../src/version1/StatCounterIncrementV1';
+import { StatCounterValueSetV1 } from '../../src/version1/StatCounterValueSetV1';
 import { StatCounterTypeV1 } from '../../src/version1/StatCounterTypeV1';
 import { IStatisticsClientV1 } from '../../src/version1/IStatisticsClientV1';
 
@@ -17,7 +18,7 @@ export class StatisticsClientFixtureV1 {
         this._client = client;
     }
         
-    testCrudOperations(done) {
+    public testCrudOperations(done) {
         async.series([
         // Increment counter
             (callback) => {
@@ -33,9 +34,15 @@ export class StatisticsClientFixtureV1 {
             },
         // Increment the same counter again
             (callback) => {
-                this._client.incrementCounter(
+                this._client.incrementCounters(
                     null,
-                    'test', 'value1', 2,
+                    [
+                        <StatCounterIncrementV1>{
+                            group: 'test',
+                            name: 'value1',
+                            value: 2
+                        }
+                    ],
                     (err) => {
                         assert.isNull(err);
 
