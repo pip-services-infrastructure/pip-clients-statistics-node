@@ -16,7 +16,7 @@ export interface IStatisticsClientV1 {
         callback: (err: any, page: DataPage<StatCounterV1>) => void): void;
     
     incrementCounter(correlationId: string, group: string, name: string,
-        value: number, callback?: (err: any) => void): void;
+        time: Date, value: number, callback?: (err: any) => void): void;
 
     incrementCounters(correlationId: string, increments: StatCounterIncrementV1[],
         callback?: (err: any) => void): void;

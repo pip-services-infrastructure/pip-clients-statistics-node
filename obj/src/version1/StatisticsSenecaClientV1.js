@@ -19,11 +19,11 @@ class StatisticsSenecaClientV1 extends pip_services_net_node_1.CommandableSeneca
             paging: paging
         }, callback);
     }
-    incrementCounter(correlationId, group, name, value, callback) {
+    incrementCounter(correlationId, group, name, time, value, callback) {
         this.callCommand('increment_counter', correlationId, {
             group: group,
             name: name,
-            time: new Date(),
+            time: time,
             value: value
         }, callback);
     }

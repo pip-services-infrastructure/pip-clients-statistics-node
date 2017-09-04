@@ -46,14 +46,14 @@ export class StatisticsLambdaClientV1 extends CommandableLambdaClient implements
     }
         
     public incrementCounter(correlationId: string, group: string, name: string,
-        value: number, callback?: (err: any) => void): void {
+        time: Date, value: number, callback?: (err: any) => void): void {
         this.callCommand(
             'increment_counter',
             correlationId,
             {
                 group: group,
                 name: name,
-                time: new Date(),
+                time: time,
                 value: value
             }, 
             callback

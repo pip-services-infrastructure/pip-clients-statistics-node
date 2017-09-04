@@ -42,9 +42,9 @@ export class StatisticsDirectClientV1 extends DirectClient<any> implements IStat
     }
     
     public incrementCounter(correlationId: string, group: string, name: string,
-        value: number, callback?: (err: any) => void): void {
+        time: Date, value: number, callback?: (err: any) => void): void {
         let timing = this.instrument(correlationId, 'statistics.increment_counter');
-        this._controller.incrementCounter(correlationId, group, name, new Date(), value, (err,) => {
+        this._controller.incrementCounter(correlationId, group, name, time, value, (err,) => {
             timing.endTiming();
             if (callback) callback(err);
         });

@@ -24,9 +24,9 @@ class StatisticsDirectClientV1 extends pip_services_net_node_1.DirectClient {
             callback(err, page);
         });
     }
-    incrementCounter(correlationId, group, name, value, callback) {
+    incrementCounter(correlationId, group, name, time, value, callback) {
         let timing = this.instrument(correlationId, 'statistics.increment_counter');
-        this._controller.incrementCounter(correlationId, group, name, new Date(), value, (err) => {
+        this._controller.incrementCounter(correlationId, group, name, time, value, (err) => {
             timing.endTiming();
             if (callback)
                 callback(err);

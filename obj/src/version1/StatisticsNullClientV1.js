@@ -11,7 +11,7 @@ class StatisticsNullClientV1 {
     getCounters(correlationId, filter, paging, callback) {
         callback(null, new pip_services_commons_node_1.DataPage([], 0));
     }
-    incrementCounter(correlationId, group, name, value, callback) {
+    incrementCounter(correlationId, group, name, time, value, callback) {
         if (callback)
             callback(null);
     }

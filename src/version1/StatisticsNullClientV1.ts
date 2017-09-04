@@ -24,7 +24,7 @@ export class StatisticsNullClientV1 implements IStatisticsClientV1 {
     }
     
     public incrementCounter(correlationId: string, group: string, name: string,
-        value: number, callback?: (err: any) => void): void {
+        time: Date, value: number, callback?: (err: any) => void): void {
         if (callback) callback(null);
     }
 

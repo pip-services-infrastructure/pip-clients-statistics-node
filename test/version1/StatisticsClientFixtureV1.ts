@@ -24,7 +24,7 @@ export class StatisticsClientFixtureV1 {
             (callback) => {
                 this._client.incrementCounter(
                     null,
-                    'test', 'value1', 1,
+                    'test', 'value1', null, 1,
                     (err) => {
                         assert.isNull(err);
 
