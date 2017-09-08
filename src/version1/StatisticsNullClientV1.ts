@@ -24,7 +24,7 @@ export class StatisticsNullClientV1 implements IStatisticsClientV1 {
     }
     
     public incrementCounter(correlationId: string, group: string, name: string,
-        time: Date, value: number, callback?: (err: any) => void): void {
+        time: Date, timezone: string, value: number, callback?: (err: any) => void): void {
         if (callback) callback(null);
     }
 
@@ -34,17 +34,20 @@ export class StatisticsNullClientV1 implements IStatisticsClientV1 {
     }
 
     public readOneCounter(correlationId: string, group: string, name: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterValueSetV1) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, value: StatCounterValueSetV1) => void): void {
         callback(null, new StatCounterValueSetV1(group, name, type, []));
     }
 
     public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         callback(null, []);
     }
 
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         let result = _.map(c => new StatCounterValueSetV1(c.group, c.name, type, []));
         callback(null, result);
     }

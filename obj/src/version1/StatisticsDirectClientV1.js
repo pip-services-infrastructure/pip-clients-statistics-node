@@ -24,9 +24,9 @@ class StatisticsDirectClientV1 extends pip_services_net_node_1.DirectClient {
             callback(err, page);
         });
     }
-    incrementCounter(correlationId, group, name, time, value, callback) {
+    incrementCounter(correlationId, group, name, time, timezone, value, callback) {
         let timing = this.instrument(correlationId, 'statistics.increment_counter');
-        this._controller.incrementCounter(correlationId, group, name, time, value, (err) => {
+        this._controller.incrementCounter(correlationId, group, name, time, timezone, value, (err) => {
             timing.endTiming();
             if (callback)
                 callback(err);
@@ -40,23 +40,23 @@ class StatisticsDirectClientV1 extends pip_services_net_node_1.DirectClient {
                 callback(err);
         });
     }
-    readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
+    readOneCounter(correlationId, group, name, type, fromTime, toTime, timezone, callback) {
         let timing = this.instrument(correlationId, 'statistics.read_one_counter');
-        this._controller.readOneCounter(correlationId, group, name, type, fromTime, toTime, (err, set) => {
+        this._controller.readOneCounter(correlationId, group, name, type, fromTime, toTime, timezone, (err, set) => {
             timing.endTiming();
             callback(err, set);
         });
     }
-    readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
+    readCountersByGroup(correlationId, group, type, fromTime, toTime, timezone, callback) {
         let timing = this.instrument(correlationId, 'statistics.read_counters_by_group');
-        this._controller.readCountersByGroup(correlationId, group, type, fromTime, toTime, (err, set) => {
+        this._controller.readCountersByGroup(correlationId, group, type, fromTime, toTime, timezone, (err, set) => {
             timing.endTiming();
             callback(err, set);
         });
     }
-    readCounters(correlationId, counters, type, fromTime, toTime, callback) {
+    readCounters(correlationId, counters, type, fromTime, toTime, timezone, callback) {
         let timing = this.instrument(correlationId, 'statistics.read_counters');
-        this._controller.readCounters(correlationId, counters, type, fromTime, toTime, (err, sets) => {
+        this._controller.readCounters(correlationId, counters, type, fromTime, toTime, timezone, (err, sets) => {
             timing.endTiming();
             callback(err, sets);
         });

@@ -11,7 +11,7 @@ class StatisticsNullClientV1 {
     getCounters(correlationId, filter, paging, callback) {
         callback(null, new pip_services_commons_node_1.DataPage([], 0));
     }
-    incrementCounter(correlationId, group, name, time, value, callback) {
+    incrementCounter(correlationId, group, name, time, timezone, value, callback) {
         if (callback)
             callback(null);
     }
@@ -19,13 +19,13 @@ class StatisticsNullClientV1 {
         if (callback)
             callback(null);
     }
-    readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
+    readOneCounter(correlationId, group, name, type, fromTime, toTime, timezone, callback) {
         callback(null, new StatCounterValueSetV1_1.StatCounterValueSetV1(group, name, type, []));
     }
-    readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
+    readCountersByGroup(correlationId, group, type, fromTime, toTime, timezone, callback) {
         callback(null, []);
     }
-    readCounters(correlationId, counters, type, fromTime, toTime, callback) {
+    readCounters(correlationId, counters, type, fromTime, toTime, timezone, callback) {
         let result = _.map(c => new StatCounterValueSetV1_1.StatCounterValueSetV1(c.group, c.name, type, []));
         callback(null, result);
     }

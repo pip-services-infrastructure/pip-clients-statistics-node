@@ -42,9 +42,9 @@ export class StatisticsDirectClientV1 extends DirectClient<any> implements IStat
     }
     
     public incrementCounter(correlationId: string, group: string, name: string,
-        time: Date, value: number, callback?: (err: any) => void): void {
+        time: Date, timezone: string, value: number, callback?: (err: any) => void): void {
         let timing = this.instrument(correlationId, 'statistics.increment_counter');
-        this._controller.incrementCounter(correlationId, group, name, time, value, (err,) => {
+        this._controller.incrementCounter(correlationId, group, name, time, timezone, value, (err,) => {
             timing.endTiming();
             if (callback) callback(err);
         });
@@ -60,27 +60,30 @@ export class StatisticsDirectClientV1 extends DirectClient<any> implements IStat
     }
 
     public readOneCounter(correlationId: string, group: string, name: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterValueSetV1) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, value: StatCounterValueSetV1) => void): void {
         let timing = this.instrument(correlationId, 'statistics.read_one_counter');
-        this._controller.readOneCounter(correlationId, group, name, type, fromTime, toTime, (err, set) => {
+        this._controller.readOneCounter(correlationId, group, name, type, fromTime, toTime, timezone, (err, set) => {
             timing.endTiming();
             callback(err, set);
         });
     }
 
     public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         let timing = this.instrument(correlationId, 'statistics.read_counters_by_group');
-        this._controller.readCountersByGroup(correlationId, group, type, fromTime, toTime, (err, set) => {
+        this._controller.readCountersByGroup(correlationId, group, type, fromTime, toTime, timezone, (err, set) => {
             timing.endTiming();
             callback(err, set);
         });
     }
 
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         let timing = this.instrument(correlationId, 'statistics.read_counters');
-        this._controller.readCounters(correlationId, counters, type, fromTime, toTime, (err, sets) => {
+        this._controller.readCounters(correlationId, counters, type, fromTime, toTime, timezone, (err, sets) => {
             timing.endTiming();
             callback(err, sets);
         });

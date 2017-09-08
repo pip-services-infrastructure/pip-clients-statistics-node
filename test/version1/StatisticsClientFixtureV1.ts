@@ -24,7 +24,7 @@ export class StatisticsClientFixtureV1 {
             (callback) => {
                 this._client.incrementCounter(
                     null,
-                    'test', 'value1', null, 1,
+                    'test', 'value1', null, 'UTC', 1,
                     (err) => {
                         assert.isNull(err);
 
@@ -69,7 +69,7 @@ export class StatisticsClientFixtureV1 {
         // Check total counters
             (callback) => {
                 this._client.readOneCounter(
-                    null, 'test', 'value1', StatCounterTypeV1.Total, null, null,
+                    null, 'test', 'value1', StatCounterTypeV1.Total, null, null, null,
                     (err, set) => {
                         assert.isNull(err);
 
@@ -86,7 +86,7 @@ export class StatisticsClientFixtureV1 {
         // Check counters by group
             (callback) => {
                 this._client.readCountersByGroup(
-                    null, 'test', StatCounterTypeV1.Total, null, null,
+                    null, 'test', StatCounterTypeV1.Total, null, null, null,
                     (err, sets) => {
                         assert.isNull(err);
 
@@ -111,6 +111,7 @@ export class StatisticsClientFixtureV1 {
                     StatCounterTypeV1.Hour,
                     new Date(),
                     new Date(),
+                    'UTC',
                     (err, sets) => {
                         assert.isNull(err);
 

@@ -46,7 +46,7 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
     }
         
     public incrementCounter(correlationId: string, group: string, name: string,
-        time: Date, value: number, callback?: (err: any) => void): void {
+        time: Date, timezone: string, value: number, callback?: (err: any) => void): void {
         this.callCommand(
             'increment_counter',
             correlationId,
@@ -54,6 +54,7 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
                 group: group,
                 name: name,
                 time: time,
+                timezone: timezone,
                 value: value
             }, 
             callback
@@ -73,7 +74,8 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
     }
 
     public readOneCounter(correlationId: string, group: string, name: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, value: StatCounterValueSetV1) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, value: StatCounterValueSetV1) => void): void {
         this.callCommand(
             'read_one_counter',
             correlationId,
@@ -82,14 +84,16 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
                 name: name,
                 type: type, 
                 from_time: fromTime,
-                to_time: toTime
+                to_time: toTime,
+                timezone: timezone
             }, 
             callback
         );
     }
 
     public readCountersByGroup(correlationId: string, group: string, type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         this.callCommand(
             'read_counters_by_group',
             correlationId,
@@ -97,14 +101,16 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
                 group: group,
                 type: type, 
                 from_time: fromTime,
-                to_time: toTime
+                to_time: toTime,
+                timezone: timezone
             }, 
             callback
         );
     }
 
     public readCounters(correlationId: string, counters: StatCounterV1[], type: StatCounterTypeV1,
-        fromTime: Date, toTime: Date, callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
+        fromTime: Date, toTime: Date, timezone: string,
+        callback: (err: any, values: StatCounterValueSetV1[]) => void): void {
         this.callCommand(
             'read_counters',
             correlationId,
@@ -112,7 +118,8 @@ export class StatisticsSenecaClientV1 extends CommandableSenecaClient implements
                 counters: counters,
                 type: type, 
                 from_time: fromTime,
-                to_time: toTime
+                to_time: toTime,
+                timezone: timezone
             }, 
             callback
         );

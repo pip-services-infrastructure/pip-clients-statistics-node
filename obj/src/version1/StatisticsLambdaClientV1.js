@@ -19,11 +19,12 @@ class StatisticsLambdaClientV1 extends pip_services_aws_node_1.CommandableLambda
             paging: paging
         }, callback);
     }
-    incrementCounter(correlationId, group, name, time, value, callback) {
+    incrementCounter(correlationId, group, name, time, timezone, value, callback) {
         this.callCommand('increment_counter', correlationId, {
             group: group,
             name: name,
             time: time,
+            timezone: timezone,
             value: value
         }, callback);
     }
@@ -32,29 +33,32 @@ class StatisticsLambdaClientV1 extends pip_services_aws_node_1.CommandableLambda
             increments: increments
         }, callback);
     }
-    readOneCounter(correlationId, group, name, type, fromTime, toTime, callback) {
+    readOneCounter(correlationId, group, name, type, fromTime, toTime, timezone, callback) {
         this.callCommand('read_one_counter', correlationId, {
             group: group,
             name: name,
             type: type,
             from_time: fromTime,
-            to_time: toTime
+            to_time: toTime,
+            timezone: timezone
         }, callback);
     }
-    readCountersByGroup(correlationId, group, type, fromTime, toTime, callback) {
+    readCountersByGroup(correlationId, group, type, fromTime, toTime, timezone, callback) {
         this.callCommand('read_counters_by_group', correlationId, {
             group: group,
             type: type,
             from_time: fromTime,
-            to_time: toTime
+            to_time: toTime,
+            timezone: timezone
         }, callback);
     }
-    readCounters(correlationId, counters, type, fromTime, toTime, callback) {
+    readCounters(correlationId, counters, type, fromTime, toTime, timezone, callback) {
         this.callCommand('read_counters', correlationId, {
             counters: counters,
             type: type,
             from_time: fromTime,
-            to_time: toTime
+            to_time: toTime,
+            timezone: timezone
         }, callback);
     }
 }
