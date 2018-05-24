@@ -14,7 +14,7 @@ import { StatCounterValueSetV1 } from './StatCounterValueSetV1';
 export class StatisticsHttpClientV1 extends CommandableHttpClient implements IStatisticsClientV1 {
 
     constructor(config?: any) {
-        super('statistics');
+        super('v1/statistics');
 
         if (config != null)
             this.configure(ConfigParams.fromValue(config));
