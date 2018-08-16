@@ -1,7 +1,7 @@
 import { FilterParams } from 'pip-services-commons-node';
 import { PagingParams } from 'pip-services-commons-node';
 import { DataPage } from 'pip-services-commons-node';
-import { CommandableHttpClient } from 'pip-services-net-node';
+import { CommandableHttpClient } from 'pip-services-rpc-node';
 import { IStatisticsClientV1 } from './IStatisticsClientV1';
 import { StatCounterV1 } from './StatCounterV1';
 import { StatCounterIncrementV1 } from './StatCounterIncrementV1';
