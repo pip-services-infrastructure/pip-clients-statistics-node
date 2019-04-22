@@ -6,6 +6,5 @@ export { StatCounterIncrementV1 } from './StatCounterIncrementV1';
 export { IStatisticsClientV1 } from './IStatisticsClientV1';
 export { StatisticsHttpClientV1 } from './StatisticsHttpClientV1';
 export { StatisticsLambdaClientV1 } from './StatisticsLambdaClientV1';
-export { StatisticsSenecaClientV1 } from './StatisticsSenecaClientV1';
 export { StatisticsDirectClientV1 } from './StatisticsDirectClientV1';
 export { StatisticsNullClientV1 } from './StatisticsNullClientV1';

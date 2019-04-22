@@ -1,4 +1,4 @@
-import { ConfigParams } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
 
 import { StatisticsClientFixtureV1 } from './StatisticsClientFixtureV1';
 import { StatisticsLambdaClientV1 } from '../../src/version1/StatisticsLambdaClientV1';
