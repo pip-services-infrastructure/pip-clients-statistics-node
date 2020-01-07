@@ -13,9 +13,9 @@ class StatisticsClientFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(StatisticsClientFactory.HttpClientV1Descriptor, StatisticsHttpClientV1_1.StatisticsHttpClientV1);
     }
 }
+exports.StatisticsClientFactory = StatisticsClientFactory;
 StatisticsClientFactory.Descriptor = new pip_services3_commons_node_1.Descriptor('pip-services-statistics', 'factory', 'default', 'default', '1.0');
 StatisticsClientFactory.NullClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('pip-services-statistics', 'client', 'null', 'default', '1.0');
 StatisticsClientFactory.DirectClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('pip-services-statistics', 'client', 'direct', 'default', '1.0');
 StatisticsClientFactory.HttpClientV1Descriptor = new pip_services3_commons_node_1.Descriptor('pip-services-statistics', 'client', 'http', 'default', '1.0');
-exports.StatisticsClientFactory = StatisticsClientFactory;
 //# sourceMappingURL=StatisticsClientFactory.js.map
